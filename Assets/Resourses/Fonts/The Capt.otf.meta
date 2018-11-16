@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: a88a6ba6f6cf65142b831e2815702feb
+timeCreated: 1515773108
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: The Capt
+  fontNames:
+  - The Capt
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

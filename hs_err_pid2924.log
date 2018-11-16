@@ -1,0 +1,115 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (mmap) failed to map 49152 bytes for card table expansion
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   In 32 bit mode, the process size limit was hit
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Use 64 bit Java on a 64 bit OS
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (os_windows.cpp:3331), pid=2924, tid=0x0000000000000c34
+#
+# JRE version:  (8.0_151-b12) (build )
+# Java VM: Java HotSpot(TM) 64-Bit Server VM (25.151-b12 mixed mode windows-amd64 compressed oops)
+# Failed to write core dump. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x000000000239d800):  JavaThread "Unknown thread" [_thread_in_vm, id=3124, stack(0x00000000023d0000,0x00000000024d0000)]
+
+Stack: [0x00000000023d0000,0x00000000024d0000]
+[error occurred during error reporting (printing stack bounds), id 0xc0000005]
+
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+
+
+---------------  P R O C E S S  ---------------
+
+Java Threads: ( => current thread )
+
+Other Threads:
+
+=>0x000000000239d800 (exited) JavaThread "Unknown thread" [_thread_in_vm, id=3124, stack(0x00000000023d0000,0x00000000024d0000)]
+
+VM state:not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+GC Heap History (0 events):
+No events
+
+Deoptimization events (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+Events (0 events):
+No events
+
+
+Dynamic libraries:
+0x000000013f430000 - 0x000000013f467000 	C:\Program Files\Java\jre1.8.0_151\bin\java.exe
+0x0000000077140000 - 0x00000000772e9000 	C:\Windows\SYSTEM32\ntdll.dll
+0x0000000076f20000 - 0x000000007703f000 	C:\Windows\system32\kernel32.dll
+0x000007fefd220000 - 0x000007fefd28b000 	C:\Windows\system32\KERNELBASE.dll
+0x000007fefe0f0000 - 0x000007fefe1cb000 	C:\Windows\system32\ADVAPI32.dll
+0x000007feff090000 - 0x000007feff12f000 	C:\Windows\system32\msvcrt.dll
+0x000007feff130000 - 0x000007feff14f000 	C:\Windows\SYSTEM32\sechost.dll
+0x000007fefdc90000 - 0x000007fefddbd000 	C:\Windows\system32\RPCRT4.dll
+0x0000000077040000 - 0x000000007713a000 	C:\Windows\system32\USER32.dll
+0x000007fefd800000 - 0x000007fefd867000 	C:\Windows\system32\GDI32.dll
+0x000007fefd7f0000 - 0x000007fefd7fe000 	C:\Windows\system32\LPK.dll
+0x000007fefde20000 - 0x000007fefdee9000 	C:\Windows\system32\USP10.dll
+0x000007fefb830000 - 0x000007fefba24000 	C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.7601.17514_none_fa396087175ac9ac\COMCTL32.dll
+0x000007feff330000 - 0x000007feff3a1000 	C:\Windows\system32\SHLWAPI.dll
+0x000007fefdaa0000 - 0x000007fefdace000 	C:\Windows\system32\IMM32.DLL
+0x000007fefdae0000 - 0x000007fefdbe9000 	C:\Windows\system32\MSCTF.dll
+0x0000000073970000 - 0x0000000073a42000 	C:\Program Files\Java\jre1.8.0_151\bin\msvcr100.dll
+0x000000006e5a0000 - 0x000000006ee3d000 	C:\Program Files\Java\jre1.8.0_151\bin\server\jvm.dll
+0x000007fef0370000 - 0x000007fef0379000 	C:\Windows\system32\WSOCK32.dll
+0x000007fefd7a0000 - 0x000007fefd7ed000 	C:\Windows\system32\WS2_32.dll
+0x000007fefdad0000 - 0x000007fefdad8000 	C:\Windows\system32\NSI.dll
+0x000007fefad20000 - 0x000007fefad5b000 	C:\Windows\system32\WINMM.dll
+0x000007fefc090000 - 0x000007fefc09c000 	C:\Windows\system32\VERSION.dll
+0x0000000077300000 - 0x0000000077307000 	C:\Windows\system32\PSAPI.DLL
+0x0000000073ac0000 - 0x0000000073acf000 	C:\Program Files\Java\jre1.8.0_151\bin\verify.dll
+0x0000000073940000 - 0x0000000073969000 	C:\Program Files\Java\jre1.8.0_151\bin\java.dll
+0x0000000073920000 - 0x0000000073936000 	C:\Program Files\Java\jre1.8.0_151\bin\zip.dll
+
+VM Arguments:
+jvm_args: -Xmx512M -Dfile.encoding=UTF8 
+java_command: C:\Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Tools\sdktools.jar -
+java_class_path (initial): C:\Program Files\Unity\Editor\Data\PlaybackEngines\AndroidPlayer/Tools\sdktools.jar
+Launcher Type: SUN_STANDARD
+
+Environment Variables:
+PATH=C:\ProgramData\Oracle\Java\javapath;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\GtkSharp\2.12\bin;C:\Program Files (x86)\Skype\Phone\;C:\Program Files (x86)\Common Files\Acronis\SnapAPI\;C:\Program Files\MySQL\MySQL Utilities 1.6\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Users\Alexander\AppData\Local\Programs\Python\Python36-32\Scripts\;C:\Users\Alexander\AppData\Local\Programs\Python\Python36-32\
+USERNAME=Alexander
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=AMD64 Family 16 Model 6 Stepping 2, AuthenticAMD
+
+
+
+---------------  S Y S T E M  ---------------
+
+OS: Windows 7 , 64 bit Build 7601 (6.1.7601.18015)
+
+CPU:total 2 (initial active 2) (2 cores per cpu, 1 threads per core) family 16 model 6 stepping 2, cmov, cx8, fxsr, mmx, sse, sse2, sse3, popcnt, mmxext, 3dnowpref, lzcnt, sse4a, tsc, tscinvbit, tscinv
+
+Memory: 4k page, physical 4193592k(865816k free), swap 5240304k(4992k free)
+
+vm_info: Java HotSpot(TM) 64-Bit Server VM (25.151-b12) for windows-amd64 JRE (1.8.0_151-b12), built on Sep  5 2017 19:33:46 by "java_re" with MS VC++ 10.0 (VS2010)
+
+time: Wed Aug 08 22:18:16 2018
+elapsed time: 0 seconds (0d 0h 0m 0s)
+
