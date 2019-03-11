@@ -7,7 +7,15 @@ public class MaxScore : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        GetComponent<Text>().text = PlayerPrefs.GetInt("Record").ToString();
+        if(PlayerPrefs.GetInt("Record") == null)
+        {
+            GetComponent<Text>().text = "0";
+        }
+        else
+        {
+            GetComponent<Text>().text = PlayerPrefs.GetInt("Record").ToString();
+        }
+        
 	}
 	
 	// Update is called once per frame

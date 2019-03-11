@@ -13,9 +13,11 @@ public class MenuController : MonoBehaviour {
     private Animator Disk;
     private Renderer rendererBackGround;
     private Vector4 nsvVector;
+    public GameObject backSound;
     public float speed;
     public bool hasNext;
     public bool startCor = true;
+
     // Use this for initialization
     private void Awake()
     {
@@ -28,6 +30,13 @@ public class MenuController : MonoBehaviour {
         Disk = GameObject.Find("Disk").GetComponent<Animator>();
         rendererBackGround = GameObject.Find("BackGround").GetComponent<Renderer>();
         nsvVector = new Vector4(0, 0, -0.15f, 0);
+        var sound = GameObject.Find("BackSound");
+        if(sound == null)
+        {
+            sound = (GameObject)Instantiate(backSound, Vector3.zero, Quaternion.identity);
+            sound.name = "BackSound";
+            DontDestroyOnLoad(sound);
+        }
 
     }
     void Start()

@@ -30,14 +30,14 @@ public class GamePlayButtons : MonoBehaviour {
                     Menu.GetComponent<SpriteRenderer>().sprite = buttonDown;
                     break;
                 }
-            case "Info_Layer1": 
+            case "Info": 
                 {
-                    GetComponent<SpriteRenderer>().sprite = buttonDown;
+                    transform.localScale = new Vector3(1.07f, 1.07f, 1f);
                     break;
                 }
             case "BackButton":
                 {
-                    transform.localScale = new Vector3(1.12f, 1.12f, 1f);
+                    
                     break;
                 }
         }
@@ -59,9 +59,9 @@ public class GamePlayButtons : MonoBehaviour {
                     Menu.GetComponent<SpriteRenderer>().sprite = buttonUp;
                     break;
                 }
-            case "Info_Layer1":
+            case "Info":
                 {
-                    GetComponent<SpriteRenderer>().sprite = buttonUp;
+                    transform.localScale = new Vector3(1f, 1f, 1f); ;
                     break;
                 }
             case "BackButton":
@@ -86,7 +86,7 @@ public class GamePlayButtons : MonoBehaviour {
                     Application.LoadLevel("MainMenu");
                     break;
                 }
-            case "Info_Layer1":
+            case "Info":
                 {
                     Application.LoadLevel("InfoScene");
                     break;

@@ -39,13 +39,13 @@ public class RightObjects : MonoBehaviour {
            
             gameCntrl.GetComponent<GameController>().score++;
             
-            if (gameCntrl.GetComponent<GameController>().score > 6) { gameCntrl.GetComponent<GameController>().count++; }
-            if (gameCntrl.GetComponent<GameController>().score <= 6)
+            if (gameCntrl.GetComponent<GameController>().score > 8) { gameCntrl.GetComponent<GameController>().count++; }
+            if (gameCntrl.GetComponent<GameController>().score <= 8)
             {
                 colorText.GetComponent<TextDet>().hasNext = true;
                 textDet.StopAllCoroutines();
             }
-            else if (gameCntrl.GetComponent<GameController>().score > 6 && gameCntrl.GetComponent<GameController>().count == 2)
+            else if (gameCntrl.GetComponent<GameController>().score > 8 && gameCntrl.GetComponent<GameController>().count == 2)
             {
                 gameCntrl.GetComponent<GameController>().count = 0;
                 colorText.GetComponent<TextDet>().hasNext = true;

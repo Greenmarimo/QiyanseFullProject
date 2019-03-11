@@ -8,11 +8,13 @@ public class AnimationController : MonoBehaviour {
     private int[] array = { 0, 1, 2, 3, 4, 5, 6 };
     public bool lose = false;
     private bool oneTime = true;
+    private bool oneTimeLastSwap = true;
     public GameObject brainElectric;
     public GameController gameController;
     public GameObject colorTextObject;
     public GameObject backGround;
     private Vector4 nsvVector = new Vector4(0,0,0,0);
+    private Vector4 lastSwapVector;
     private bool blueTransition = true;
     private bool violetTransition = true;
     private bool pinkTransition = true;
@@ -46,6 +48,26 @@ public class AnimationController : MonoBehaviour {
         StartCoroutine(JustWaitCorr());
         StartCoroutine(BrainElectricCorr());
     }
+    IEnumerator AllTheme()
+    {
+        oneTimeLastSwap = false;
+        while (true)
+        {
+            lastSwapVector = new Vector4(0.07f, 0.3f, 0.02f, 0);
+            yield return new WaitForSeconds(3f);
+            lastSwapVector = new Vector4(0.35f, 0, 0, 0);
+            yield return new WaitForSeconds(3f);
+            lastSwapVector = new Vector4(0.55f, 0, 0, 0);
+            yield return new WaitForSeconds(3f);
+            lastSwapVector = new Vector4(0.7f, 0.1f, 0, 0);
+            yield return new WaitForSeconds(3f);
+            lastSwapVector = new Vector4(0.9f, 0.38f, 0, 0);
+            yield return new WaitForSeconds(3f);
+            lastSwapVector = new Vector4(0.8f, 0.2f, 0, 0);
+            yield return new WaitForSeconds(3f);
+            
+        }
+    }
     IEnumerator WinkingScreenPlay()
     {
         for (int i = 0; i < 7; i++)
@@ -72,6 +94,7 @@ public class AnimationController : MonoBehaviour {
             for (int i = 0; i < 7; i++)
             {
                 anim[array[i]].SetBool("OpenIdle_In_WinkingAnim", true);
+                Debug.Log(anim[i]);
                 yield return new WaitForSeconds(0.1f);
             }
             yield return new WaitForSeconds(0.5f);
@@ -96,9 +119,8 @@ public class AnimationController : MonoBehaviour {
         gameController.hasTransition = true;
         colorTextObject.SetActive(false);
         StopCoroutine(WinkingScreenPlay());
-        timer.timerTime = timer.maxTimerTime;
         timer.hasTime = false;
-       
+        timer.timerTime = timer.maxTimerTime;
 
         for (int i = 0; i < 7; i++)
         {
@@ -156,59 +178,63 @@ public class AnimationController : MonoBehaviour {
                 anim[i].SetBool("CloseAnim_In_CloseIdle", true);
             }
         }
-        if (blueTransition && gameController.score == 6 )
+        if (blueTransition && gameController.score == 8 )
         {
             blueTransition = false;
             ThemeTransition("HumanCutInFishAnim");
         }
-        if (violetTransition && gameController.score == 10)
+        if (violetTransition && gameController.score == 16)
         {
             violetTransition = false;
             ThemeTransition("FishCutInSnakeAnim");
         }
-        if (pinkTransition && gameController.score == 16)
+        if (pinkTransition && gameController.score == 24)
         {
             pinkTransition = false;
             ThemeTransition("SnakeCutInButterflyAnim");
         }
-        if (orangeTransition && gameController.score == 20)
+        if (orangeTransition && gameController.score == 32)
         {
             orangeTransition = false;
             ThemeTransition("ButterflyCutInTigerAnim");
         }
-        if (redTransition && gameController.score == 26)
+        if (redTransition && gameController.score == 40)
         {
             redTransition = false;
             ThemeTransition("TigerCutInDemonAnim");
         }
-        if (yellowTransition && gameController.score == 30)
+        if (yellowTransition && gameController.score == 48)
         {
             yellowTransition = false;
             ThemeTransition("DemonCutInWaspAnim");
         }
-        if (gameController.score == 6)
+        if (gameController.score == 8)
         {
             HSVSwap(new Vector4(0.35f, 0, 0, 0));          
         }
-        if (gameController.score == 10)
+        if (gameController.score == 16)
         {   
             HSVSwap(new Vector4(0.55f, 0, 0, 0));
         }
-        if (gameController.score == 16)
+        if (gameController.score == 24)
         {
             HSVSwap(new Vector4(0.7f, 0.1f, 0, 0));
         }
-        if (gameController.score == 20)
-        {
-            HSVSwap(new Vector4(0.8f, 0.2f, 0, 0));
-        }
-        if (gameController.score == 26)
+        if (gameController.score == 32)
         {
             HSVSwap(new Vector4(0.9f, 0.38f, 0, 0));
         }
-        if (gameController.score == 30)
+        if (gameController.score == 40)
         {
-            HSVSwap(new Vector4(0.07f, 0.3f, 0.02f, 0));
+            
+        }
+        if (gameController.score == 48 )
+        {
+            if (oneTimeLastSwap)
+            {
+                StartCoroutine(AllTheme());
+            } 
+            HSVSwap(lastSwapVector);
         }
         
     }

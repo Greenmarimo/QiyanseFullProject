@@ -37,12 +37,12 @@ public class TextDet : MonoBehaviour {
     IEnumerator NextColor()
     {
 
-        if (gameCntrl.score < 6)
+        if (gameCntrl.score < 8)
         {
             GetText.sprite = textColorName[idColorName];
             GetText.color = colorArray[6];
         }
-        else if (gameCntrl.score >= 6 )
+        else if (gameCntrl.score >= 8 )
         {
             while (true)
             {

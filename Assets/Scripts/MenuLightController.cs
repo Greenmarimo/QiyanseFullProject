@@ -15,15 +15,19 @@ public class MenuLightController : MonoBehaviour {
         {
             for(int i = 0; i < 5; i++)
             {
-                menuLights[i].SetActive(true);
-                if (i > 0)
+                if (PlayerPrefs.GetString("sound") != "no")
                 {
-                    menuLights[i-1].SetActive(false);
+                    menuLights[i].SetActive(true);
+                    if (i > 0)
+                    {
+                        menuLights[i - 1].SetActive(false);
+                    }
+                    else
+                    {
+                        menuLights[4].SetActive(false);
+                    }
                 }
-                else
-                {
-                    menuLights[4].SetActive(false);
-                }
+                
                 yield return new WaitForSeconds(0.4f);
             }
         }

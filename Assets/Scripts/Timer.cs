@@ -18,7 +18,7 @@ public class Timer : MonoBehaviour {
     {
         GetImage = GetComponent<Image>();
 
-        maxTimerTime = 5f;
+        maxTimerTime = 7f;
         gameCntrl = GameObject.Find("Game Controller").GetComponent<GameController>();
         brainLight = GameObject.Find("BrainLight");
     }
@@ -27,18 +27,14 @@ public class Timer : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        if (hasTime)
+        if (hasTime && gameCntrl.score != 0 && gameCntrl.score != 8)
         {
             Image image = GetImage;
-            if(gameCntrl.score >= 6 && gameCntrl.score < 15)
+            if(gameCntrl.score >= 8 && gameCntrl.score < 50)
             {
-
-                maxTimerTime = 4.5f - 0.1f * gameCntrl.score;
+                maxTimerTime = 6f - Mathf.Pow(gameCntrl.score * 1.09744f,1/3);
             }
-            if (gameCntrl.score >= 15 && gameCntrl.score <= 50)
-            {
-                maxTimerTime = maxTimerTime = 4.5f - 0.024f * gameCntrl.score; ;
-            }
+            
 
             image.fillAmount = timerTime / maxTimerTime;
 

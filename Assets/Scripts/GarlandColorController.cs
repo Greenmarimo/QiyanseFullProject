@@ -39,7 +39,7 @@ public class GarlandColorController : MonoBehaviour {
 	
     void Update()
     {
-        if(gameController.score == 6)
+        if(gameController.score == 8)
         {
             float step = speed * Time.deltaTime;
             larpedColor = Color.Lerp(larpedColor, colorArray[0], step);
@@ -50,7 +50,7 @@ public class GarlandColorController : MonoBehaviour {
             pentagramma.color = larpedColor;
             
         }
-        if (gameController.score == 10)
+        if (gameController.score == 16)
         {
             float step = speed * Time.deltaTime;
             larpedColor = Color.Lerp(larpedColor, colorArray[1], step);
@@ -61,7 +61,7 @@ public class GarlandColorController : MonoBehaviour {
             pentagramma.color = larpedColor;
             
         }
-        if (gameController.score == 16)
+        if (gameController.score == 24)
         {
             float step = speed * Time.deltaTime;
             larpedColor = Color.Lerp(larpedColor, colorArray[2], step);
@@ -72,7 +72,7 @@ public class GarlandColorController : MonoBehaviour {
             pentagramma.color = larpedColor;
             
         }
-        if (gameController.score == 20)
+        if (gameController.score == 32)
         {
             float step = speed * Time.deltaTime;
             larpedColor = Color.Lerp(larpedColor, colorArray[3], step);
@@ -83,7 +83,7 @@ public class GarlandColorController : MonoBehaviour {
             pentagramma.color = larpedColor;
             
         }
-        if (gameController.score == 26)
+        if (gameController.score == 40)
         {
             float step = speed * Time.deltaTime;
             larpedColor = Color.Lerp(larpedColor, colorArray[4], step);
@@ -94,7 +94,7 @@ public class GarlandColorController : MonoBehaviour {
             pentagramma.color = larpedColor;
             
         }
-        if (gameController.score == 30)
+        if (gameController.score == 48)
         {
             float step = speed * Time.deltaTime;
             larpedColor = Color.Lerp(larpedColor, colorArray[5], step);

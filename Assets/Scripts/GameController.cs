@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
+using UnityEngine.Advertisements;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
@@ -14,6 +15,7 @@ public class GameController : MonoBehaviour {
     private GameObject[] blocks = new GameObject[7];
     public GameObject[] sclera = new GameObject[7];
     public Sprite[] EyesTexture = new Sprite[7];
+    public Color[] diskColor = new Color[7];
     public int[] array = {0,1,2,3,4,5,6};
     public TextDet colorText;
     public int score;
@@ -30,6 +32,12 @@ public class GameController : MonoBehaviour {
     public GameObject colorTextObject;
     public bool hasTransition = false;
     private Renderer rendererBackGround;
+    public  GameObject trueDisk;
+    private GameObject trueDisk1;
+    private GameObject trueDisk2;
+    private static int adsCount = 0;
+    private static bool done; 
+    public bool firstPlay = true;
 
 
 
@@ -65,6 +73,17 @@ public class GameController : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        if(PlayerPrefs.GetString("NoAds") != "yes")
+        {
+            if (Advertisement.isSupported)
+            {
+                Advertisement.Initialize("3063359", false);
+            }
+            else
+            {
+                Debug.Log("Platform is not supported");
+            }
+        }
         rendererBackGround.sharedMaterial.SetVector("_HSVAAdjust", new Vector4(0, 0, 0, 0));
         StartCoroutine(ScreenPlay());
     }
@@ -105,7 +124,7 @@ public class GameController : MonoBehaviour {
             }
             
         }
-        if (lose)
+        if (lose && !done)
         {
             PlayerLose();
         }
@@ -113,7 +132,8 @@ public class GameController : MonoBehaviour {
     void Next()
     {
         hasNext = false;
-
+        Destroy(trueDisk1);
+        Destroy(trueDisk2);
         timer.timerTime = timer.maxTimerTime;
         var rand = new System.Random();
         for (int i = array.Length - 1; i >= 0; i--)
@@ -129,13 +149,36 @@ public class GameController : MonoBehaviour {
             blocks[i] = Instantiate(Eye, new Vector3(sclera[i].transform.position.x, sclera[i].transform.position.y, sclera[i].transform.position.z - 0.2f), Quaternion.identity) as GameObject;
             blocks[i].transform.SetParent(MainDisk);
             blocks[i].GetComponent<SpriteRenderer>().sprite = EyesTexture[array[i]];
-            if (blocks[i].GetComponent<SpriteRenderer>().sprite.name == colorText.textColorName[0].name && score <6)
+            if (blocks[i].GetComponent<SpriteRenderer>().sprite.name == colorText.textColorName[0].name && score <8)
             {
                 blocks[i].GetComponent<RightObjects>().right = true;
+                if(firstPlay && score == 0)
+                {
+                    trueDisk1 = Instantiate(trueDisk, new Vector3(blocks[i].transform.position.x, blocks[i].transform.position.y, blocks[i].transform.position.z - 2.5f), Quaternion.identity) as GameObject;
+                    trueDisk1.transform.SetParent(MainDisk);
+                    trueDisk1.GetComponent<SpriteRenderer>().color = diskColor[array[i]];
+                }
+                
             }
-            if (blocks[i].GetComponent<SpriteRenderer>().sprite.name == colorText.textColorName[0].name || blocks[i].GetComponent<SpriteRenderer>().sprite.name == colorText.textColorName[1].name && score >= 6 )
+            if (blocks[i].GetComponent<SpriteRenderer>().sprite.name == colorText.textColorName[0].name || blocks[i].GetComponent<SpriteRenderer>().sprite.name == colorText.textColorName[1].name && score >= 8 )
             {
                 blocks[i].GetComponent<RightObjects>().right = true;
+                if(firstPlay && score == 8)
+                {
+                    if (trueDisk1 == null)
+                    {
+                        trueDisk1 = Instantiate(trueDisk, new Vector3(blocks[i].transform.position.x, blocks[i].transform.position.y, blocks[i].transform.position.z - 2.5f), Quaternion.identity) as GameObject;
+                        trueDisk1.transform.SetParent(MainDisk);
+                        trueDisk1.GetComponent<SpriteRenderer>().color = diskColor[array[i]];
+                    }
+                    else
+                    {
+                        trueDisk2 = Instantiate(trueDisk, new Vector3(blocks[i].transform.position.x, blocks[i].transform.position.y, blocks[i].transform.position.z - 2.5f), Quaternion.identity) as GameObject;
+                        trueDisk2.transform.SetParent(MainDisk);
+                        trueDisk2.GetComponent<SpriteRenderer>().color = diskColor[array[i]];
+                    }
+                }
+                
             }
             
             
@@ -145,10 +188,20 @@ public class GameController : MonoBehaviour {
     }
     void PlayerLose()
     {
+        done = true;
+        if (PlayerPrefs.GetString("NoAds") != "yes")
+        {
+            if (Advertisement.IsReady())
+            {
+                Advertisement.Show();
+            }
+        }
         for (int i = 0; i < 7; i++)
         {
             Destroy(blocks[i]);
         }
+        Destroy(trueDisk1);
+        Destroy(trueDisk2);
         pLost.SetActive(true);
         colorTextObject.SetActive(false);
         animLost.GetComponent<AnimationController>().lose = true;
